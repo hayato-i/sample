@@ -16,9 +16,9 @@
         }
     }
     */
+
     window.addEventListener('load',function (){
-        function myFunc(){alert('click!');}
-        myFunc();
+        var drawCircle = function() {alert('click!');}
         var element = document.getElementById('square0');
         element.addEventListener('click', myFunc, false);
     },false);
