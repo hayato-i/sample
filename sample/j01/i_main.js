@@ -28,8 +28,8 @@ window.onload = function (){
     //div範囲のID取得
     var element = document.getElementById('s0');
     //id = s0の挙動確認
-    element.addEventListener('click', function drawCircle(eve){
-        eve.textContent = "○";
+    element.addEventListener('click', function(eve){
+        eve.currentTarget.textContent = "○";
     }, false);
     
     // 
