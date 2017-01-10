@@ -18,9 +18,14 @@
     */
 
     window.addEventListener('load',function (){
-        var drawCircle = function() {alert('click!');}
+        //子要素としての'○'の描画
         var element = document.getElementById('square0');
-        element.addEventListener('click', myFunc, false);
+        element.addEventListener('click', drawCircle(element){ 
+            element.createElement('h1');
+            element.appendChild(newElement);
+            newElement.textContent = '○';
+        }, false);
+
     },false);
         
 
