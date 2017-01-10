@@ -19,11 +19,15 @@
 
     window.addEventListener('load',function (){
         //子要素としての'○'の描画
+
+        //div範囲のID取得
         var element = document.getElementById('square0');
-        element.addEventListener('click', drawCircle(element){ 
-            element.createElement('h1');
-            element.appendChild(newElement);
-            newElement.textContent = '○';
+
+        
+        element.addEventListener('click', drawCircle(eve) = { 
+            eve.createElement('h1');
+            eve.appendChild(newElement);
+            eve.textContent = '○';
         }, false);
 
     },false);
