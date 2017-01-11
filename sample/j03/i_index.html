@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="main.js"></script>
-        <link rel="stylesheet" href="style.css">
+        <script src="i_main.js"></script>
+        <link rel="stylesheet" href="i_style.css">
     </head>
     <body>
         <canvas id="canvas"></canvas>
         <p id="info"></p>
+        <input type="button" id="reset" onclick="init" value="Clear All">
+        <input type="color" id="brushC" value="#ff0000" >
+        <input type="range" id="brushS" min="0" max="50">
     </body>
 </html>
