@@ -34,47 +34,33 @@ function winJudge(){
     }
 }
 */
+function drawCircle(el){
+    var str = document.getElementById(el).textContent = "○";
+}
+
+
 window.onload = function main(){
 
     // テスト用関数
     // function myFunc() {alert('ckick event!');}
 
-    // 偶数回のクリックは○、奇数回は×を描画
-    // すでに要素があるセルには上書きできない処理を追記
+    // 偶数回のクリックは○、奇数回は×を描画したい
 
-    //
-    
-        if(x%2==0 && cell[0] == 0){
-            var element = document.getElementById('s0')
-            element.addEventListener('click', function drawCircle(eve){
-                eve.currentTarget.textContent = "○";
-            }, false);
-            x+=1;
-            cell[0] = 1;// 判定用
-        }else if(x%2==1 && cell[0] == 0){
-            var element = document.getElementById('s0')
-            element.addEventListener('click', function drawCross(eve){
-                eve.currentTarget.textContent = "×";
-            }, false);
-            x+=1;
-            cell[0] = -1;// 判定用
-        }
-
-        if(x%2==0 && cell[6] == 0){
-            var element = document.getElementById('s6')
-            element.addEventListener('click', function drawCircle(eve){
-                eve.currentTarget.textContent = "○";
-            }, false);
-            x+=1;
-            cell[6] = 1;// 判定用
-        }else if(x%2==1 && cell[6] == 0){
-            var element = document.getElementById('s6')
-            element.addEventListener('click', function drawCross(eve){
-                eve.currentTarget.textContent = "×";
-            }, false);
-            x+=1;
-            cell[6] = -1;// 判定用
-        }
+    if(x%2==0 && cell[0] == 0){
+        var element = document.getElementById('s0')
+        element.addEventListener('click', function drawCircle(eve){
+            eve.currentTarget.textContent = "○";
+        }, false);
+        x+=1;
+        cell[0] = 1;// 判定用
+    }else if(x%2==1 && cell[0] == 0){
+        var element = document.getElementById('s0')
+        element.addEventListener('click', function drawCross(eve){
+            eve.currentTarget.textContent = "×";
+        }, false);
+        x+=1;
+        cell[0] = -1;// 判定用
+    }
 
 
 }
