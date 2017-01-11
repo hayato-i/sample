@@ -4,6 +4,7 @@
     var ctx, lctx;
     var mousePosition = new Position(0, 0);
     var mDownFlag = false;
+    var reset;
     var brushColor = 'red';
     var brushSize = 10;
 
@@ -14,13 +15,20 @@
         canvas.addEventListener('mouseup',mouseUp,false);
         canvas.addEventListener('init',init,false);
 
-        // 筆のパラメータ
+        // 筆の色
+        brushC = document.getElementById('bColor');
+        brushC.addEventListener("change",changeColor,false);
+
+        // 筆のサイズ
+        brushS = document.getElementById('bSize');
+        brushS.addEventListener("change",changeSize,false);
         
-        brushC = document.getElementById('brushSize');
+        reset = document.getElementById('reset');
+        reset.addEventListener('click',init,false);
 
         canvas.width = 700;
         canvas.height = 500;
-        ctx = canvas.getContext('2d');
+        ctx = canvas.getContext('webgl');
         console.log(ctx);
         ctx.fillStyle = brushColor;
     }, false);
@@ -31,6 +39,7 @@
             ctx.beginPath();
             ctx.arc(pos.x, pos.y, brushSize, 0, Math.PI * 2);
             ctx.closePath();
+            ctx.fillStyle = brushColor;
             ctx.fill();
         }
     }
@@ -49,6 +58,14 @@
 
     function mouseUp(){
         mDownFlag = false;
+    }
+
+    function changeColor(bC){
+        brushColor = bC.currentTarget.value;
+    }
+
+    function changeSize(bS){
+        brushSize = bS.currentTarget.value;
     }
 
     function init(){
