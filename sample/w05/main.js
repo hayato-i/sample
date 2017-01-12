@@ -42,6 +42,7 @@ window.onload = function(){
 	var vColor = [];
 	(function(){
 		var i, j, k;
+		var rad;
 		for(i = 0; i < 100; ++i){
 			j = -1.0 + i * 0.02;
 			vPosition.push(j, 0.0, 0.0);

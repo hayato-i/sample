@@ -9,9 +9,11 @@ uniform   mat4 mvpMatrix;
 varying   vec4 vColor;
 
 void main(){
+	vec3 p = position;
 	vColor = color;
     gl_PointSize = 5.0;
-	gl_Position = mvpMatrix * vec4(position, 1.0);
+	p.y = sin((position.x + 1.0)*(3.14)*4.0)/5.0;
+	gl_Position = mvpMatrix * vec4(p, 1.0);
 }
 		</script>
 		<script id="fs" type="x-shader/x-fragment">

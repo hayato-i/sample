@@ -95,7 +95,7 @@ window.onload = function(){
 	m.lookAt([0.0, 0.0, 5.0], [0.0, 0.0, 0.0], [0.0, 1.0, 0.0], vMatrix);
 
 	// プロジェクション座標変換行列
-	m.perspective(45, c.width / c.height, 0.1, 10.0, pMatrix);
+	m.perspective(90, c.width / c.height, 0.1, 10.0, pMatrix);
 
 	// モデル座標変換行列
 	m.translate(mMatrix, [0.5, 0.5, 0.0], mMatrix);
