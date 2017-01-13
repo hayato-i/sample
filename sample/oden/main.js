@@ -72,7 +72,6 @@ window.onload = function(){
 	// IBOをバインド
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
 
-
 	// - uniform関連 -------------------------------------------------------------- *
 	// uniformLocationの取得
 	var uniLocation = [];
@@ -164,6 +163,7 @@ window.onload = function(){
 		// = レンダリング =========================================================
 		// モデルの描画
 		gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
+		
 		// コンテキストの再描画
 		gl.flush();
 		

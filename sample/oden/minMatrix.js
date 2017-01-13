@@ -510,7 +510,7 @@ function equTri(length ,color){
 		-bcx, bcy, 0.2,  // 1
 		bcx, bcy, 0.2,  // 2
 		0.0, ay, -0.2,  // 3
-		bcx, bcy, -0.2,// 4
+		bcx, bcy, -0.2, // 4
 		-bcx, bcy, -0.2  // 5
 	];
 		
