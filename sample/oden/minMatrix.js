@@ -499,7 +499,7 @@ function hsva(h, s, v, a){
 }
 
 
-function triangle(length ,color){
+function equTri(length ,color){
 	var ay = length/Math.sqrt(3.0);
 	var bcx = length/2.0;
 	var bcy = -length/(2.0*Math.sqrt(3.0));
@@ -517,6 +517,12 @@ function triangle(length ,color){
 		-bcx, bcy, 0.0
 	];
 
+	var st = [
+		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0,
+		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0,
+		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0
+	];
+
 	var col = [
 		color, color, color, 1.0,
 		color, color, color, 1.0,
@@ -528,5 +534,5 @@ function triangle(length ,color){
 	];
 	
 
-	return {p: pos, n: nor, c:col, i:idx}
+	return {p: pos, n: nor, c:col, t:st, i:idx}
 }

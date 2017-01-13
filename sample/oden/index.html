@@ -11,11 +11,10 @@ varying   vec4 vColor;
 varying   vec3 vnormal;
 
 void main(){
-
 	vColor = color;
 	vnormal = normal;
 	gl_Position = mvpMatrix * vec4(position, 1.0);
-	
+
 }
 		</script>
 		<script id="fs" type="x-shader/x-fragment">
@@ -26,10 +25,9 @@ varying   vec4 vColor;
 varying   vec3 vnormal;
 
 void main(){
-	vec3 inverseLight = normalize(invMatrix * vec4(lightDirection, 1.0)).xyz;
-	float diff = clamp(dot(inverseLight, vnormal), 0.1, 1.0);
-	float shade = 1.0;	
-	gl_FragColor = vec4(vColor.rgb * diff, vColor.a);
+	//vec3 inverseLight = normalize(invMatrix * vec4(lightDirection, 1.0)).xyz;
+	//float diff = clamp(dot(inverseLight, vnormal), 0.1, 1.0);
+	gl_FragColor = vec4(vColor.rgb, vColor.a);
 }
 		</script>
 		<script src="main.js"></script>
