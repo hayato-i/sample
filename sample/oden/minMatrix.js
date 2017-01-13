@@ -504,33 +504,48 @@ function equTri(length ,color){
 	var bcx = length/2.0;
 	var bcy = -length/(2.0*Math.sqrt(3.0));
 
-
+	// 頂点座標
 	var pos = [
-		0.0, ay, 0.0,
-		bcx, bcy, 0.0,
-		-bcx, bcy, 0.0
+		0.0, ay, 0.2,    // 0
+		-bcx, bcy, 0.2,  // 1
+		bcx, bcy, 0.2,  // 2
+		0.0, ay, -0.2,  // 3
+		bcx, bcy, -0.2,// 4
+		-bcx, bcy, -0.2  // 5
 	];
 		
+	// 法線
 	var nor = [
-		0.0, ay, 0.0,
-		bcx, bcy, 0.0,
-		-bcx, bcy, 0.0
+		0.0, ay, 0.2,
+		-bcx, bcy, 0.2,
+		bcx, bcy, 0.2,
+		0.0, ay, -0.2,
+		-bcx, bcy, -0.2,
+		bcx, bcy, -0.2
 	];
 
+	//　テクスチャ座標（一応）
 	var st = [
 		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0,
 		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0,
 		0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0
 	];
 
+	// 色(グレーでこんにゃくっぽく)
 	var col = [
+		color, color, color, 1.0,
+		color, color, color, 1.0,
+		color, color, color, 1.0,
 		color, color, color, 1.0,
 		color, color, color, 1.0,
 		color, color, color, 1.0
 	];
 
 	var idx = [
-		0, 1, 2
+		0, 1, 2, 0, 3, 1,
+		3, 5, 1, 1, 5, 2,
+		2, 5, 4, 2, 4, 0,
+		0, 4, 3, 3, 4, 5
 	];
 	
 

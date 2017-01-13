@@ -51,7 +51,7 @@ window.onload = function(){
 	var index     = torusData.i;
 	*/
 
-	var triData = equTri(1.0, 1.0);
+	var triData = equTri(1.0, 0.3);
 	var vPosition = triData.p;
 	var vNormal = triData.n;
 	var vColor = triData.c;
@@ -108,7 +108,7 @@ window.onload = function(){
 	// いくつかの設定を有効化する
 	gl.enable(gl.DEPTH_TEST);
 	gl.depthFunc(gl.LEQUAL);
-	//gl.enable(gl.CULL_FACE);
+	gl.enable(gl.CULL_FACE);
 	//gl.enable(gl.BLEND);
 	//gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE);
 
@@ -132,7 +132,7 @@ window.onload = function(){
 
 	// - レンダリング関数 ---------------------------------------------------------
 	// アニメーション用のフラグを立てる
-	run = true;
+	run = false;
 
 	// レンダリング関数のコール
 	render();
@@ -163,8 +163,7 @@ window.onload = function(){
 		
 		// = レンダリング =========================================================
 		// モデルの描画
-		//gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
-		gl.drawArrays(gl.TRIANGLES, 0, 3);
+		gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
 		// コンテキストの再描画
 		gl.flush();
 		
