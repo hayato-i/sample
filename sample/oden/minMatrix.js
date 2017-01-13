@@ -500,23 +500,32 @@ function hsva(h, s, v, a){
 
 
 function triangle(length ,color){
-	var le = 1.0 * length;
+	var ay = length/Math.sqrt(3.0);
+	var bcx = length/2.0;
+	var bcy = -length/(2.0*Math.sqrt(3.0));
+
+
 	var pos = [
-		le/sqrt(3.0), 0.0, 0.0,
-		-le/(2.0*sqrt(3.0)), le/2.0, 0.0,
-		-le/(2.0*sqrt(3.0)), -le/2.0, 0.0,
+		0.0, ay, 0.0,
+		bcx, bcy, 0.0,
+		-bcx, bcy, 0.0
 	];
 		
 	var nor = [
-
+		0.0, ay, 0.0,
+		bcx, bcy, 0.0,
+		-bcx, bcy, 0.0
 	];
 
-	var color = [
-		0.3, 0.3, 0.3,
-		0.3, 0.3, 0.3,
-		0.3, 0.3, 0.3
+	var col = [
+		color, color, color, 1.0,
+		color, color, color, 1.0,
+		color, color, color, 1.0
 	];
 
+	var idx = [
+		0, 1, 2
+	];
 	
 
 	return {p: pos, n: nor, c:col, i:idx}

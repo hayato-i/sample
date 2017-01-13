@@ -43,12 +43,19 @@ window.onload = function(){
 	attStride[1] = 3;
 	attStride[2] = 4;
 
-	// ユーティリティ関数からモデルを生成(トーラス)
+	/* ユーティリティ関数からモデルを生成(トーラス)
 	var torusData = torus(64, 64, 0.25, 0.75);
 	var vPosition = torusData.p;
 	var vNormal   = torusData.n;
 	var vColor    = torusData.c;
 	var index     = torusData.i;
+	*/
+
+	var triData = triangle(1.0, 1.0);
+	var vPosition = triData.p;
+	var vNormal = triData.n;
+	var vColor = triData.c;
+	var index = triData.i;
 
 	// VBOの生成
 	var attVBO = [];
