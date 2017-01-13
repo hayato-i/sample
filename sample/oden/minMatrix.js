@@ -497,3 +497,27 @@ function hsva(h, s, v, a){
 	}
 	return color;
 }
+
+
+function triangle(length ,color){
+	var le = 1.0 * length;
+	var pos = [
+		le/sqrt(3.0), 0.0, 0.0,
+		-le/(2.0*sqrt(3.0)), le/2.0, 0.0,
+		-le/(2.0*sqrt(3.0)), -le/2.0, 0.0,
+	];
+		
+	var nor = [
+
+	];
+
+	var color = [
+		0.3, 0.3, 0.3,
+		0.3, 0.3, 0.3,
+		0.3, 0.3, 0.3
+	];
+
+	
+
+	return {p: pos, n: nor, c:col, i:idx}
+}
