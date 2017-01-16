@@ -554,9 +554,11 @@ function equTri(length ,color){
 
 // 円柱表裏 num:分割数
 function scilinder(num, height){
-	var i, j;
+	var i, j, k;
 	var pos = [], nor = [], col = [], idx = [];
 	var r = Math.PI * 2 / num;
+
+	
 	// 上底
 	for(i = 0; i < num; i++){
 		//x,y座標
@@ -597,12 +599,25 @@ function scilinder(num, height){
 	}
 	idx.push(num+1, num*2+1, num*2);
 
-
-	//　筒
 	
+	//　筒
+	/*
+	for(i=0; i < num; i++){
+		var scx = Math.cos(r*i);
+		var scy = Math.sin(r*i);
+		var scz = height/2;
 
+		pos.push(scx, scy, scz, scx, scy, -scz);
+		col.push(0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0);
+		nor.push(Math.cos(r), Math.sin(r), 0.0, Math.cos(r), -Math.sin(r), 0.0);
+	}
 
-
+	for(i=0; i < num-1; i++){
+		k = i * 2 + j;
+		idx.push(k, k+1, k+2, k+2, k+1, k+3);
+	}
+	idx.push(2*num+j-2, 2*num+j-1, j, j, 2*num+j-1 ,j+1);
+*/
 	return {p: pos, n: nor, c:col, i:idx}
 
 }

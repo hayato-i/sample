@@ -55,14 +55,14 @@ window.onload = function(){
 	// こんにゃく
 	/*
 	var triData = equTri(1.0, 0.3);
-	var vPosition = triData.p;
+	var vPosition = triData.p;	
 	var vNormal = triData.n;
 	var vColor = triData.c;
 	var index = triData.i;
 	*/
 
 	// おでん円柱
-	var scilData = scilinder(32, 1.0);
+	var scilData = scilinder(16, 1.0);
 	var vPosition = scilData.p;
 	var vNormal = scilData.n;
 	var vColor = scilData.c;
@@ -118,7 +118,7 @@ window.onload = function(){
 	// いくつかの設定を有効化する
 	gl.enable(gl.DEPTH_TEST);
 	gl.depthFunc(gl.LEQUAL);
-	gl.enable(gl.CULL_FACE);
+	//gl.enable(gl.CULL_FACE);
 	//gl.enable(gl.BLEND);
 	//gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE);
 
@@ -161,7 +161,7 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
-		m.rotate(mMatrix, rad, [1.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, rad, [1.0, 0.0, 0.0], mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
 		m.inverse(mMatrix, invMatrix);
 		
