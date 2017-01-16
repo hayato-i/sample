@@ -45,7 +45,7 @@ window.onload = function(){
 
 
 	// 大根---------------------------------------------------------------------
-	var scilDai = scilinder(32, 0.7, 1.0);
+	var scilDai = scilinder(32, 0.7, {r:1.0, g:0.9, b:0.7, a:1.0});
 	var vPosition = scilDai.p;
 	var vNormal = scilDai.n;
 	var vColor = scilDai.c;
@@ -61,7 +61,7 @@ window.onload = function(){
 	var iboDai = create_ibo(index);
 
 	// こんにゃく----------------------------------------------------------------
-	var scilKon = scilinder(3, 0.6, 1.0);
+	var scilKon = scilinder(3, 0.6, {r:0.5, g:0.5, b:0.5, a:1.0});
 	vPosition = scilKon.p;
 	vNormal = scilKon.n;
 	vColor = scilKon.c;
@@ -78,7 +78,7 @@ window.onload = function(){
 
 
 	// ユーティリティ関数からモデルを生成(トーラス)ちくわ-----------------------------
-	var torusData = torus(64, 64, 0.25, 0.5);
+	var torusData = torus(64, 64, 0.25, 0.5,[0.9, 0.7, 0.5, 1.0]);
 	vPosition = torusData.p;
 	vNormal   = torusData.n;
 	vColor    = torusData.c;
@@ -94,7 +94,7 @@ window.onload = function(){
 	var iboTk = create_ibo(index);
 
 	// 串---------------------------------------------------------------------------
-	var scilKs = scilinder(32, 1.0, 1.0);
+	var scilKs = scilinder(32, 1.0, {r:1.0, g:0.8, b:0.5, a:1.0});
 	vPosition = scilKs.p;
 	vNormal = scilKs.n;
 	vColor = scilKs.c;
@@ -188,8 +188,8 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 1.0], mMatrix);
 		m.translate(mMatrix, [0.0, 1.0, 0.0], mMatrix);
-		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
 		m.rotate(mMatrix, Math.PI/2,[0.0, 0.0, 1.0], mMatrix);
 		m.scale(mMatrix,[0.6, 0.6, 0.6],mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
@@ -216,7 +216,7 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
-		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 1.0], mMatrix);
 		m.scale(mMatrix,[0.7, 0.7, 0.7],mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
 		m.inverse(mMatrix, invMatrix);
@@ -243,8 +243,8 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 1.0], mMatrix);
 		m.translate(mMatrix, [0.0, -1.07, 0.0], mMatrix);
-		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
 		m.rotate(mMatrix, Math.PI/2, [0.0, 0.0, 1.0], mMatrix);
 		m.scale(mMatrix,[0.5, 4.0, 0.5],mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
@@ -272,7 +272,7 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
-		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 1.0], mMatrix);
 		m.rotate(mMatrix, Math.PI/2, [1.0, 0.0, .0], mMatrix);
 		m.scale(mMatrix,[0.05, 0.05, 4.0],mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);

@@ -566,11 +566,11 @@ function scilinder(num, height, color){
 		var scy = Math.sin(r*i);
 		var scz = height/2;
 		pos.push(scx, scy, scz);
-		col.push(color, color, color, 1.0);
+		col.push(color.r, color.g, color.b, color.a);
 		nor.push(0.0, 0.0, 1.0);
 	}
 	pos.push(0.0, 0.0, height/2);
-	col.push(color, color, color, 1.0);
+	col.push(color.r, color.g, color.b, color.a);
 	nor.push(0.0, 0.0, 1.0);
 
 	for(j = 0; j < num-1; j++){
@@ -587,11 +587,11 @@ function scilinder(num, height, color){
 		var scy = -Math.sin(r*i);
 		var scz = -height/2;
 		pos.push(scx, scy, scz);
-		col.push(color, color, color, 1.0);
+		col.push(color.r, color.g, color.b, color.a);
 		nor.push(0.0, 0.0, -1.0);
 	}
 	pos.push(0.0, 0.0, -height/2);
-	col.push(color, color, color, 1.0);
+	col.push(color.r, color.g, color.b, color.a);
 	nor.push(0.0, 0.0, -1.0);
 
 	for(; j < 2*num; j++){
@@ -609,7 +609,7 @@ function scilinder(num, height, color){
 		var scz = height/2;
 
 		pos.push(scx, scy, scz, scx, scy, -scz);
-		col.push(color, color, color, 1.0, color, color, color, 1.0);
+		col.push(color.r, color.g, color.b, color.a, color.r, color.g, color.b, color.a);
 		nor.push(scx, scy, 0.0, scx, scy, 0.0);
 	}
 
