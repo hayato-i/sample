@@ -78,7 +78,7 @@ window.onload = function(){
 
 
 	// ユーティリティ関数からモデルを生成(トーラス)ちくわ-----------------------------
-	var torusData = torus(64, 64, 0.25, 0.5,[0.9, 0.7, 0.5, 1.0]);
+	var torusData = torus(64, 64, 0.25, 0.5,[0.9, 0.72, 0.5, 1.0]);
 	vPosition = torusData.p;
 	vNormal   = torusData.n;
 	vColor    = torusData.c;
@@ -144,7 +144,7 @@ window.onload = function(){
 	// いくつかの設定を有効化する
 	gl.enable(gl.DEPTH_TEST);
 	gl.depthFunc(gl.LEQUAL);
-	//gl.enable(gl.CULL_FACE);
+	gl.enable(gl.CULL_FACE);
 	//gl.enable(gl.BLEND);
 	//gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE);
 
