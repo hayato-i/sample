@@ -43,7 +43,8 @@ window.onload = function(){
 	attStride[1] = 3;
 	attStride[2] = 4;
 
-	/* ユーティリティ関数からモデルを生成(トーラス)
+	// ユーティリティ関数からモデルを生成(トーラス)
+	/*
 	var torusData = torus(64, 64, 0.25, 0.75);
 	var vPosition = torusData.p;
 	var vNormal   = torusData.n;
@@ -51,11 +52,21 @@ window.onload = function(){
 	var index     = torusData.i;
 	*/
 
+	// こんにゃく
+	/*
 	var triData = equTri(1.0, 0.3);
 	var vPosition = triData.p;
 	var vNormal = triData.n;
 	var vColor = triData.c;
 	var index = triData.i;
+	*/
+
+	// おでん円柱
+	var scilData = scilinder(32, 1.0);
+	var vPosition = scilData.p;
+	var vNormal = scilData.n;
+	var vColor = scilData.c;
+	var index = scilData.i;
 
 	// VBOの生成
 	var attVBO = [];
@@ -131,7 +142,7 @@ window.onload = function(){
 
 	// - レンダリング関数 ---------------------------------------------------------
 	// アニメーション用のフラグを立てる
-	run = false;
+	run = true;
 
 	// レンダリング関数のコール
 	render();
@@ -150,7 +161,7 @@ window.onload = function(){
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
-		m.rotate(mMatrix, rad, [0.0, 1.0, 1.0], mMatrix);
+		m.rotate(mMatrix, rad, [1.0, 1.0, 0.0], mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
 		m.inverse(mMatrix, invMatrix);
 		

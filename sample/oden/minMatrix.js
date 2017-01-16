@@ -551,3 +551,58 @@ function equTri(length ,color){
 
 	return {p: pos, n: nor, c:col, t:st, i:idx}
 }
+
+// 円柱表裏 num:分割数
+function scilinder(num, height){
+	var i, j;
+	var pos = [], nor = [], col = [], idx = [];
+	var r = Math.PI * 2 / num;
+	// 上底
+	for(i = 0; i < num; i++){
+		//x,y座標
+		var scx = Math.cos(r*i);
+		var scy = Math.sin(r*i);
+		var scz = height/2;
+		pos.push(scx, scy, scz);
+		col.push(1.0, 1.0, 1.0, 1.0);
+		nor.push(0.0, 0.0, 1.0);
+	}
+	pos.push(0.0, 0.0, height/2);
+	col.push(1.0, 1.0, 1.0, 1.0);
+	nor.push(0.0, 0.0, 1.0);
+
+	for(j = 0; j < num-1; j++){
+		idx.push(j+1, num, j);
+	}
+	idx.push(0, num, num-1);
+
+	//　下底
+	j+=2;
+	
+	for(i = 0; i < num; i++){
+		//x,y座標
+		var scx = Math.cos(r*i);
+		var scy = -Math.sin(r*i);
+		var scz = -height/2;
+		pos.push(scx, scy, scz);
+		col.push(1.0, 0.0, 0.0, 1.0);
+		nor.push(0.0, 0.0, -1.0);
+	}
+	pos.push(0.0, 0.0, -height/2);
+	col.push(1.0, 0.0, 0.0, 1.0);
+	nor.push(0.0, 0.0, -1.0);
+
+	for(; j < 2*num; j++){
+		idx.push(j+1, num*2+1, j);
+	}
+	idx.push(num+1, num*2+1, num*2);
+
+
+	//　筒
+	
+
+
+
+	return {p: pos, n: nor, c:col, i:idx}
+
+}
