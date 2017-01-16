@@ -43,45 +43,56 @@ window.onload = function(){
 	attStride[1] = 3;
 	attStride[2] = 4;
 
-	// ユーティリティ関数からモデルを生成(トーラス)
-	/*
-	var torusData = torus(64, 64, 0.25, 0.75);
-	var vPosition = torusData.p;
-	var vNormal   = torusData.n;
-	var vColor    = torusData.c;
-	var index     = torusData.i;
-	*/
 
-	// こんにゃく
-	/*
-	var triData = equTri(1.0, 0.3);
-	var vPosition = triData.p;	
-	var vNormal = triData.n;
-	var vColor = triData.c;
-	var index = triData.i;
-	*/
-
-	// おでん円柱
-	var scilData = scilinder(3, 1.0, 5.0);
-	var vPosition = scilData.p;
-	var vNormal = scilData.n;
-	var vColor = scilData.c;
-	var index = scilData.i;
+	// 大根---------------------------------------------------------------------
+	var scilDai = scilinder(32, 1.0, 1.0);
+	var vPosition = scilDai.p;
+	var vNormal = scilDai.n;
+	var vColor = scilDai.c;
+	var index = scilDai.i;
 
 	// VBOの生成
-	var attVBO = [];
-	attVBO[0] = create_vbo(vPosition);
-	attVBO[1] = create_vbo(vNormal);
-	attVBO[2] = create_vbo(vColor);
-
-	// VBOのバインドと登録
-	set_attribute(attVBO, attLocation, attStride);
+	var attDaiVBO = [];
+	attDaiVBO[0] = create_vbo(vPosition);
+	attDaiVBO[1] = create_vbo(vNormal);
+	attDaiVBO[2] = create_vbo(vColor);
 
 	// IBOの生成
-	var ibo = create_ibo(index);
+	var iboDai = create_ibo(index);
 
-	// IBOをバインド
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+	// こんにゃく----------------------------------------------------------------
+	var scilKon = scilinder(3, 1.0, 1.0);
+	vPosition = scilKon.p;
+	vNormal = scilKon.n;
+	vColor = scilKon.c;
+	index = scilKon.i;
+
+	// VBOの生成
+	var attKonVBO = [];
+	attKonVBO[0] = create_vbo(vPosition);
+	attKonVBO[1] = create_vbo(vNormal);
+	attKonVBO[2] = create_vbo(vColor);
+
+	// IBOの生成
+	var iboKon = create_ibo(index);
+
+
+	// ユーティリティ関数からモデルを生成(トーラス)ちくわ-----------------------------
+	
+	var torusData = torus(64, 64, 0.25, 0.75);
+	vPosition = torusData.p;
+	vNormal   = torusData.n;
+	vColor    = torusData.c;
+	index     = torusData.i;
+
+	// VBOの生成
+	var attTkVBO = [];
+	attTkVBO[0] = create_vbo(vPosition);
+	attTkVBO[1] = create_vbo(vNormal);
+	attTkVBO[2] = create_vbo(vColor);
+
+	// IBOの生成
+	var iboTk = create_ibo(index);
 
 	// - uniform関連 -------------------------------------------------------------- *
 	// uniformLocationの取得
@@ -162,7 +173,6 @@ window.onload = function(){
 		// モデル座標変換行列
 		m.identity(mMatrix);
 		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
-		m.rotate(mMatrix, Math.PI/2, [0.0, 0.0, 1.0], mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
 		m.inverse(mMatrix, invMatrix);
 		
@@ -172,9 +182,17 @@ window.onload = function(){
 		gl.uniformMatrix4fv(uniLocation[1], false, invMatrix);
 		gl.uniform3fv(uniLocation[2], lightDirection);
 		
+		//VBO,IBOのバインド
+		
+		// VBOのバインドと登録
+		set_attribute(attKonVBO, attLocation, attStride);
+		
+		// IBOをバインド
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboKon);
+
 		// = レンダリング =========================================================
 		// モデルの描画
-		gl.drawElements(gl.TRIANGLES, index.length, gl.UNSIGNED_SHORT, 0);
+		gl.drawElements(gl.TRIANGLES, scilKon.i.length, gl.UNSIGNED_SHORT, 0);
 		
 		// コンテキストの再描画
 		gl.flush();
