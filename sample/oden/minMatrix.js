@@ -553,7 +553,7 @@ function equTri(length ,color){
 }
 
 // 円柱表裏 num:分割数
-function scilinder(num, height){
+function scilinder(num, height, color){
 	var i, j, k;
 	var pos = [], nor = [], col = [], idx = [];
 	var r = Math.PI * 2 / num;
@@ -566,11 +566,11 @@ function scilinder(num, height){
 		var scy = Math.sin(r*i);
 		var scz = height/2;
 		pos.push(scx, scy, scz);
-		col.push(1.0, 1.0, 1.0, 1.0);
+		col.push(color, color, color, 1.0);
 		nor.push(0.0, 0.0, 1.0);
 	}
 	pos.push(0.0, 0.0, height/2);
-	col.push(1.0, 1.0, 1.0, 1.0);
+	col.push(color, color, color, 1.0);
 	nor.push(0.0, 0.0, 1.0);
 
 	for(j = 0; j < num-1; j++){
@@ -587,11 +587,11 @@ function scilinder(num, height){
 		var scy = -Math.sin(r*i);
 		var scz = -height/2;
 		pos.push(scx, scy, scz);
-		col.push(1.0, 0.0, 0.0, 1.0);
+		col.push(color, color, color, 1.0);
 		nor.push(0.0, 0.0, -1.0);
 	}
 	pos.push(0.0, 0.0, -height/2);
-	col.push(1.0, 0.0, 0.0, 1.0);
+	col.push(color, color, color, 1.0);
 	nor.push(0.0, 0.0, -1.0);
 
 	for(; j < 2*num; j++){
@@ -601,15 +601,16 @@ function scilinder(num, height){
 
 	
 	//　筒
-	/*
+	j+=2;
+
 	for(i=0; i < num; i++){
 		var scx = Math.cos(r*i);
 		var scy = Math.sin(r*i);
 		var scz = height/2;
 
 		pos.push(scx, scy, scz, scx, scy, -scz);
-		col.push(0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0);
-		nor.push(Math.cos(r), Math.sin(r), 0.0, Math.cos(r), -Math.sin(r), 0.0);
+		col.push(color, color, color, 1.0, color, color, color, 1.0);
+		nor.push(scx, scy, 0.0, scx, scy, 0.0);
 	}
 
 	for(i=0; i < num-1; i++){
@@ -617,7 +618,7 @@ function scilinder(num, height){
 		idx.push(k, k+1, k+2, k+2, k+1, k+3);
 	}
 	idx.push(2*num+j-2, 2*num+j-1, j, j, 2*num+j-1 ,j+1);
-*/
+
 	return {p: pos, n: nor, c:col, i:idx}
 
 }
