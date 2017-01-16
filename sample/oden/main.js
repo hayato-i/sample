@@ -45,7 +45,7 @@ window.onload = function(){
 
 
 	// 大根---------------------------------------------------------------------
-	var scilDai = scilinder(32, 1.0, 1.0);
+	var scilDai = scilinder(32, 0.7, 1.0);
 	var vPosition = scilDai.p;
 	var vNormal = scilDai.n;
 	var vColor = scilDai.c;
@@ -61,7 +61,7 @@ window.onload = function(){
 	var iboDai = create_ibo(index);
 
 	// こんにゃく----------------------------------------------------------------
-	var scilKon = scilinder(3, 1.0, 1.0);
+	var scilKon = scilinder(3, 0.6, 1.0);
 	vPosition = scilKon.p;
 	vNormal = scilKon.n;
 	vColor = scilKon.c;
@@ -78,8 +78,7 @@ window.onload = function(){
 
 
 	// ユーティリティ関数からモデルを生成(トーラス)ちくわ-----------------------------
-	
-	var torusData = torus(64, 64, 0.25, 0.75);
+	var torusData = torus(64, 64, 0.25, 0.5);
 	vPosition = torusData.p;
 	vNormal   = torusData.n;
 	vColor    = torusData.c;
@@ -93,6 +92,22 @@ window.onload = function(){
 
 	// IBOの生成
 	var iboTk = create_ibo(index);
+
+	// 串---------------------------------------------------------------------------
+	var scilKs = scilinder(32, 1.0, 1.0);
+	vPosition = scilKs.p;
+	vNormal = scilKs.n;
+	vColor = scilKs.c;
+	index = scilKs.i;
+
+	// VBOの生成
+	var attKsVBO = [];
+	attKsVBO[0] = create_vbo(vPosition);
+	attKsVBO[1] = create_vbo(vNormal);
+	attKsVBO[2] = create_vbo(vColor);
+
+	// IBOの生成
+	var iboKs = create_ibo(index);
 
 	// - uniform関連 -------------------------------------------------------------- *
 	// uniformLocationの取得
@@ -169,10 +184,14 @@ window.onload = function(){
 		// canvasを初期化
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		
+		// こんにゃく****************************************************************
 		// = 行列の計算 =========================================================== *
 		// モデル座標変換行列
 		m.identity(mMatrix);
+		m.translate(mMatrix, [0.0, 1.0, 0.0], mMatrix);
 		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, Math.PI/2,[0.0, 0.0, 1.0], mMatrix);
+		m.scale(mMatrix,[0.6, 0.6, 0.6],mMatrix);
 		m.multiply(vpMatrix, mMatrix, mvpMatrix);
 		m.inverse(mMatrix, invMatrix);
 		
@@ -183,7 +202,6 @@ window.onload = function(){
 		gl.uniform3fv(uniLocation[2], lightDirection);
 		
 		//VBO,IBOのバインド
-		
 		// VBOのバインドと登録
 		set_attribute(attKonVBO, attLocation, attStride);
 		
@@ -194,6 +212,89 @@ window.onload = function(){
 		// モデルの描画
 		gl.drawElements(gl.TRIANGLES, scilKon.i.length, gl.UNSIGNED_SHORT, 0);
 		
+		// 大根**********************************************************************
+		// = 行列の計算 =========================================================== *
+		// モデル座標変換行列
+		m.identity(mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.scale(mMatrix,[0.7, 0.7, 0.7],mMatrix);
+		m.multiply(vpMatrix, mMatrix, mvpMatrix);
+		m.inverse(mMatrix, invMatrix);
+		
+		// = uniform 関連 ========================================================= *
+		// uniformLocationへ座標変換行列を登録
+		gl.uniformMatrix4fv(uniLocation[0], false, mvpMatrix);
+		gl.uniformMatrix4fv(uniLocation[1], false, invMatrix);
+		gl.uniform3fv(uniLocation[2], lightDirection);
+		
+		//VBO,IBOのバインド
+		// VBOのバインドと登録
+		set_attribute(attDaiVBO, attLocation, attStride);
+		
+		// IBOをバインド
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboDai);
+
+		// = レンダリング =========================================================
+		// モデルの描画
+		gl.drawElements(gl.TRIANGLES, scilDai.i.length, gl.UNSIGNED_SHORT, 0);
+
+
+		// ちくわ********************************************************************
+		// = 行列の計算 =========================================================== *
+		// モデル座標変換行列
+		m.identity(mMatrix);
+		m.translate(mMatrix, [0.0, -1.07, 0.0], mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, Math.PI/2, [0.0, 0.0, 1.0], mMatrix);
+		m.scale(mMatrix,[0.5, 4.0, 0.5],mMatrix);
+		m.multiply(vpMatrix, mMatrix, mvpMatrix);
+		m.inverse(mMatrix, invMatrix);
+		
+		// = uniform 関連 ========================================================= *
+		// uniformLocationへ座標変換行列を登録
+		gl.uniformMatrix4fv(uniLocation[0], false, mvpMatrix);
+		gl.uniformMatrix4fv(uniLocation[1], false, invMatrix);
+		gl.uniform3fv(uniLocation[2], lightDirection);
+		
+		//VBO,IBOのバインド
+		// VBOのバインドと登録
+		set_attribute(attTkVBO, attLocation, attStride);
+		
+		// IBOをバインド
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboTk);
+
+		// = レンダリング =========================================================
+		// モデルの描画
+		gl.drawElements(gl.TRIANGLES, torusData.i.length, gl.UNSIGNED_SHORT, 0);
+
+
+		// 串************************************************************************
+		// = 行列の計算 =========================================================== *
+		// モデル座標変換行列
+		m.identity(mMatrix);
+		m.rotate(mMatrix, rad, [0.0, 1.0, 0.0], mMatrix);
+		m.rotate(mMatrix, Math.PI/2, [1.0, 0.0, .0], mMatrix);
+		m.scale(mMatrix,[0.05, 0.05, 4.0],mMatrix);
+		m.multiply(vpMatrix, mMatrix, mvpMatrix);
+		m.inverse(mMatrix, invMatrix);
+		
+		// = uniform 関連 ========================================================= *
+		// uniformLocationへ座標変換行列を登録
+		gl.uniformMatrix4fv(uniLocation[0], false, mvpMatrix);
+		gl.uniformMatrix4fv(uniLocation[1], false, invMatrix);
+		gl.uniform3fv(uniLocation[2], lightDirection);
+		
+		//VBO,IBOのバインド
+		// VBOのバインドと登録
+		set_attribute(attKsVBO, attLocation, attStride);
+		
+		// IBOをバインド
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboKs);
+
+		// = レンダリング =========================================================
+		// モデルの描画
+		gl.drawElements(gl.TRIANGLES, scilKs.i.length, gl.UNSIGNED_SHORT, 0);
+
 		// コンテキストの再描画
 		gl.flush();
 		
